@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" data-critters-container>
+
+<head>
+  <meta charset="utf-8">
+  <title>Hangman</title>
+  <base href="https://iordaniel.github.io/hangman/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    html,
+    body {
+      display: block !important;
+      height: 100vh !important;
+      width: 100vw !important;
+      margin: 0;
+      padding: 0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow: hidden
+    }
+
+    h1 {
+      font-size: 3.125rem;
+      color: var(--gray-900);
+      font-weight: 500;
+      line-height: 100%;
+      letter-spacing: -.125rem;
+      margin: 0;
+      font-family: Inter Tight, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol;
+      color: #9fbb73 !important
+    }
+
+    p {
+      margin: 0;
+      color: var(--gray-700)
+    }
+
+    main {
+      width: 100%;
+      min-height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: inherit;
+      position: relative
+    }
+
+    .content {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      max-width: 1024px;
+      margin-bottom: 3rem
+    }
+
+    .content h1 {
+      margin-top: 1.75rem
+    }
+
+    .content p {
+      margin-top: 1.5rem
+    }
+
+    .divider {
+      width: 1px;
+      background: #F1EB90;
+      margin-inline: .5rem
+    }
+
+    @media screen and (max-width: 650px) {
+      .content {
+        flex-direction: column;
+        width: max-content
+      }
+
+      html,
+      body {
+        overflow: auto
+      }
+
+      .image-container {
+        margin: 40px 0 0 !important
+      }
+
+      .word-container {
+        margin: 0 !important
+      }
+    }
+
+    .divider {
+      height: 1px;
+      width: 100%;
+      background: var(--red-to-pink-to-purple-horizontal-gradient);
+      margin-block: 1.5rem
+    }
+
+    .t-center {
+      text-align: center
+    }
+
+    .word-container {
+      font-size: 4rem;
+      margin-top: 1.5rem;
+      color: #9fbb73
+    }
+  </style>
+  <link rel="stylesheet" href="styles-DCHVHSLY.css" media="print" onload="this.media='all'"><noscript>
+    <link rel="stylesheet" href="styles-DCHVHSLY.css">
+  </noscript>
+  <style ng-app-id="ng">
+    .g-over[_ngcontent-ng-c1778057609] {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+      background-color: #f1eb90;
+      width: 300px;
+      height: 300px;
+      border-radius: 5%
+    }
+  </style>
+  <style ng-app-id="ng">
+    .image-container[_ngcontent-ng-c1837432829] {
+      margin: 40px auto;
+      height: 350px
+    }
+  </style>
+  <style ng-app-id="ng">
+    .keyboard-container[_ngcontent-ng-c2148004984] {
+      margin: 50px auto;
+      width: 500px;
+      max-width: 95vw;
+      height: 200px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      justify-content: center
+    }
+
+    .key[_ngcontent-ng-c2148004984] {
+      width: 48px;
+      height: 48px;
+      border: none;
+      border-radius: 10px;
+      background-color: #ec8f5e;
+      color: #fff
+    }
+
+    .key[_ngcontent-ng-c2148004984]:hover {
+      cursor: pointer;
+      background-color: #9fbb73 !important
+    }
+
+    .key[disabled][_ngcontent-ng-c2148004984] {
+      background-color: #9fbb73 !important;
+      cursor: not-allowed
+    }
+  </style>
+</head>
+
+<body><!--nghm-->
+  <app-root _nghost-ng-c1778057609 ng-version="17.0.3" ngh="2" ng-server-context="ssg">
+    <div _ngcontent-ng-c1778057609 style="display: flex; gap: 20px; width: 100vw; justify-content: end;">
+      <div _ngcontent-ng-c1778057609 style="display: inline-block; margin: 20px auto;"><span
+          _ngcontent-ng-c1778057609>Difficulty &nbsp;</span><select _ngcontent-ng-c1778057609
+          class="ng-untouched ng-pristine ng-valid">
+          <option _ngcontent-ng-c1778057609 value="easy">Easy</option>
+          <option _ngcontent-ng-c1778057609 value="medium">Medium</option>
+          <option _ngcontent-ng-c1778057609 value="hard">Hard</option>
+        </select></div>
+    </div>
+    <main _ngcontent-ng-c1778057609 class="main">
+      <div _ngcontent-ng-c1778057609 class="content"><!---->
+        <div _ngcontent-ng-c1778057609 class="left-side t-center">
+          <h1 _ngcontent-ng-c1778057609>Hangman Game</h1><app-imagecontainer _ngcontent-ng-c1778057609
+            _nghost-ng-c1837432829 ngh="0">
+            <div _ngcontent-ng-c1837432829 class="image-container"><img _ngcontent-ng-c1837432829 alt="hangman-0"
+                src="../../images/hangman-0.svg"></div>
+          </app-imagecontainer>
+        </div>
+        <div _ngcontent-ng-c1778057609 role="separator" aria-label="Divider" class="divider"></div>
+        <div _ngcontent-ng-c1778057609 class="right-side t-center">
+          <p _ngcontent-ng-c1778057609 style="opacity: 0.5;">Guess the word:</p>
+          <div _ngcontent-ng-c1778057609 class="word-container"><span _ngcontent-ng-c1778057609><span
+                _ngcontent-ng-c1778057609> _ </span><!----><!----></span><span _ngcontent-ng-c1778057609><span
+                _ngcontent-ng-c1778057609> _ </span><!----><!----></span><span _ngcontent-ng-c1778057609><span
+                _ngcontent-ng-c1778057609> _ </span><!----><!----></span><span _ngcontent-ng-c1778057609><span
+                _ngcontent-ng-c1778057609> _ </span><!----><!----></span><span _ngcontent-ng-c1778057609><span
+                _ngcontent-ng-c1778057609> _ </span><!----><!----></span><span _ngcontent-ng-c1778057609><span
+                _ngcontent-ng-c1778057609> _ </span><!----><!----></span><span _ngcontent-ng-c1778057609><span
+                _ngcontent-ng-c1778057609> _ </span><!----><!----></span><!----></div>
+          <p _ngcontent-ng-c1778057609 style="opacity: 0.5;">Wrong guesses: 0/6</p><app-keyboard
+            _ngcontent-ng-c1778057609 _nghost-ng-c2148004984 ngh="1">
+            <div _ngcontent-ng-c2148004984 class="keyboard-container"><button _ngcontent-ng-c2148004984 type="button"
+                class="key"> A </button><button _ngcontent-ng-c2148004984 type="button" class="key"> B </button><button
+                _ngcontent-ng-c2148004984 type="button" class="key"> C </button><button _ngcontent-ng-c2148004984
+                type="button" class="key"> D </button><button _ngcontent-ng-c2148004984 type="button" class="key"> E
+              </button><button _ngcontent-ng-c2148004984 type="button" class="key"> F </button><button
+                _ngcontent-ng-c2148004984 type="button" class="key"> G </button><button _ngcontent-ng-c2148004984
+                type="button" class="key"> H </button><button _ngcontent-ng-c2148004984 type="button" class="key"> I
+              </button><button _ngcontent-ng-c2148004984 type="button" class="key"> J </button><button
+                _ngcontent-ng-c2148004984 type="button" class="key"> K </button><button _ngcontent-ng-c2148004984
+                type="button" class="key"> L </button><button _ngcontent-ng-c2148004984 type="button" class="key"> M
+              </button><button _ngcontent-ng-c2148004984 type="button" class="key"> N </button><button
+                _ngcontent-ng-c2148004984 type="button" class="key"> O </button><button _ngcontent-ng-c2148004984
+                type="button" class="key"> P </button><button _ngcontent-ng-c2148004984 type="button" class="key"> Q
+              </button><button _ngcontent-ng-c2148004984 type="button" class="key"> R </button><button
+                _ngcontent-ng-c2148004984 type="button" class="key"> S </button><button _ngcontent-ng-c2148004984
+                type="button" class="key"> T </button><button _ngcontent-ng-c2148004984 type="button" class="key"> U
+              </button><button _ngcontent-ng-c2148004984 type="button" class="key"> V </button><button
+                _ngcontent-ng-c2148004984 type="button" class="key"> W </button><button _ngcontent-ng-c2148004984
+                type="button" class="key"> X </button><button _ngcontent-ng-c2148004984 type="button" class="key"> Y
+              </button><button _ngcontent-ng-c2148004984 type="button" class="key"> Z </button><!----></div>
+          </app-keyboard>
+          <div _ngcontent-ng-c1778057609><button _ngcontent-ng-c1778057609 class="key">Start new game</button></div>
+        </div>
+      </div>
+    </main><router-outlet _ngcontent-ng-c1778057609></router-outlet><!---->
+  </app-root>
+  <script src="polyfills-LZBJRJJE.js" type="module"></script>
+  <script src="main-ZH5N5T3A.js" type="module"></script>
+
+  <script id="ng-state"
+    type="application/json">{"__nghData__":[{},{"t":{"1":"t4"},"c":{"1":[{"i":"t4","r":1,"x":26}]}},{"t":{"13":"t0","23":"t1"},"c":{"13":[],"23":[{"i":"t1","r":1,"t":{"1":"t2","2":"t3"},"c":{"1":[{"i":"t2","r":1}],"2":[]},"x":7}],"30":[]}}]}</script>
+</body>
+
+</html>
