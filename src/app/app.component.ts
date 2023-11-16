@@ -18,7 +18,7 @@ export class AppComponent {
   @ViewChild(KeyboardComponent) keyboard!: KeyboardComponent;
   @HostListener('document:keydown', ['$event'])
   KeyBoardPressed(event: KeyboardEvent): void {
-    this.hangManService.KeyBoardPressed(event);
+    this.hangManService?.KeyBoardPressed(event);
   }
 
   constructor(public hangManService: GameService) {
