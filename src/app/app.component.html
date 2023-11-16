@@ -1,0 +1,53 @@
+<div style="display:flex;gap:20px;width: 100vw;justify-content: end; ">
+  <div style="display: inline-block;margin: 20px auto;">
+    <span>Difficulty &nbsp;</span>
+    <select [(ngModel)]="hangManService.difficulty" (change)="hangManService.initNewGame()">
+      <option value="easy">Easy</option>
+      <option value="medium">Medium</option>
+      <option value="hard">Hard</option>
+    </select>
+  </div>
+</div>
+<main class="main">
+  <div class="content">
+    <div *ngIf="!hangManService.isGameRunning" class="g-over t-center">
+      <div *ngIf="hangManService.youWon">
+        <h1>You Won!</h1>
+        <img src="../images/victory.gif" alt="You Won" width="128px" height="128px">
+        <br>
+        <br>
+      </div>
+      <div *ngIf="!hangManService.youWon">
+        <h2>You Lost!</h2>
+        <img src="../images/lost.gif" alt="You Lost" width="128px" height="128px">
+        <p>The word was: {{hangManService.word.join("")}}</p>
+        <br>
+      </div>
+      <button class="key" (click)="hangManService.initNewGame()">Play Again</button>
+    </div>
+    <div class="left-side t-center">
+      <h1>{{title}} Game</h1>
+      <app-imagecontainer [Index]="hangManService.nrOfErrors"></app-imagecontainer>
+    </div>
+    <div class="divider" role="separator" aria-label="Divider"></div>
+    <div class="right-side t-center">
+      <p style="opacity: 0.5;">Guess the word:</p>
+      <div class="word-container">
+        <span *ngFor="let letter of hangManService.word; let i = index">
+          <span *ngIf="hangManService.showLetter(letter) == false">
+            _
+          </span>
+          <span *ngIf="hangManService.showLetter(letter) == true">
+            {{letter}}
+          </span>
+        </span>
+      </div>
+      <p style="opacity: 0.5;">Wrong guesses: {{hangManService.nrOfErrors}}/6</p>
+      <app-keyboard (KeyPressed)="hangManService.onKeyPressed($event)"></app-keyboard>
+      <div>
+        <button class="key" (click)="hangManService.initNewGame()">Start new game</button>
+      </div>
+    </div>
+  </div>
+</main>
+<router-outlet></router-outlet>

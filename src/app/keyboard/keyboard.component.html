@@ -1,0 +1,6 @@
+<div class="keyboard-container">
+    <button type="button" *ngFor="let letter of letters" class="key" (click)="keyPress(letter)"
+        [disabled]="isPressed(letter)">
+        {{letter}}
+    </button>
+</div>
